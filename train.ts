@@ -5,9 +5,9 @@
 // MASALAN: getHighestIndex([5, 21, 12, 21, 8]) return qiladi 1 sonini.
 
 
-function getHighestIndex(numbers) {
-    let highestNumber = Number.MIN_VALUE;
-    let highestIndex = -1;
+function getHighestIndex(numbers: number[]): number {
+    let highestNumber: number = Number.NEGATIVE_INFINITY;
+    let highestIndex: number = -1;
 
     for (let i = 0; i < numbers.length; i++) {
         if (numbers[i] > highestNumber) {
@@ -19,4 +19,17 @@ function getHighestIndex(numbers) {
     return highestIndex;
 }
 
-console.log(getHighestIndex([12,31,2312,312,313,213])); // Output: 1
+console.log(getHighestIndex([5, 235666, 12, 21, 8])); // Output: 1
+
+
+
+
+
+// Architectural pattern: MVC, DI, MVP
+
+// MVC => Model View Controller
+// DI => Dependency Injection
+// MVP for frontend model view presenter
+
+// design pattern: Middleware, Decotar
+// what diferrence commonjs modulejs in general
