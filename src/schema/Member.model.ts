@@ -8,7 +8,7 @@ import { MemberStatus, MemberType } from '../libs/enums/member.enum';
         type: String,
         enum: MemberType,
         default: MemberType.USER
-    },
+    }, 
 
     memberStatus: {
         type: String,

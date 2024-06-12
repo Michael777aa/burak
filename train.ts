@@ -15,3 +15,4 @@ function getDigits(input: string): string {
 }
 
 console.log(getDigits("m14i1t")); 
+//sdasas
