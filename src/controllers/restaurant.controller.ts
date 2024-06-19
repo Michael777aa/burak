@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import {T} from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberInput } from "../libs/types/member";
-import { MemberType } from "../libs/enums/member.enum";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import {LoginInput} from "../libs/types/member";
 
 const memberService = new MemberService();
@@ -11,9 +11,9 @@ const memberService = new MemberService();
 const restaurantController: T = {}; 
 restaurantController.goHome = (req: Request, res: Response) => {
     try {
-        console.log('goHome');
-        
-        res.render("Home")
+        console.log('goHome');        
+        res.render("Home");
+
     }catch(err) {
         console.log("Error, goHome:", err);
         
@@ -59,6 +59,7 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
 };
 
 restaurantController.processLogin = async (req: Request, res: Response) => {
+
     try {
         console.log("processLogin");
         const input: LoginInput = req.body; 
@@ -72,6 +73,7 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
     }
 };
  
+console.log(restaurantController);
 
 
  
