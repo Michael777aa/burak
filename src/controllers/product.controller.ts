@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Errors from "../libs/Error";
 import { T } from "../libs/types/common";
 import ProductService from "../models/Product.service";
+import { AdminRequest } from "../libs/types/member";
 
 
 
@@ -15,6 +16,8 @@ productController.getAllproducts = async (req: Request, res: Response) => {
       
     }catch(err) {
         console.log("Error, getAllproducts:", err);
+        
+        
         if(err instanceof Errors) res.status(err.code).json(err);
         else res.status(Errors.standard.code).json(Errors.standard);
         // res.json({}); 
