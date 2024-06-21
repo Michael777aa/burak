@@ -85,7 +85,7 @@ class MemberService {
             const member = await this.memberModel
             .findOne(
                 {memberNick: input.memberNick},
-                {memberNick: 1, memberPassword: 1 }
+                {memberNick: 1, memberPassword: 1}
                  )
             .exec();
 
