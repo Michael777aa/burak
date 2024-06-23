@@ -12,7 +12,7 @@ import { T } from './libs/types/common';
 
 const MongoDBStore = ConnectMongoDB(session);
 
-var store = new MongoDBStore({
+const store = new MongoDBStore({
     uri: String(process.env.MONGO_URL),
     collection: 'sessions',
   });
@@ -31,8 +31,8 @@ app.use(session({
       maxAge: 1000 * 3600 * 6, // 6h
     },
     store: store,
-    resave: true,
-    saveUninitialized: true
+    resave: true,    // 10:30 pm 13:30 pm
+    saveUninitialized: true 
 }));
 app.use(function(req, res, next) {
   const sessionInstance = req.session as T;

@@ -9,10 +9,10 @@ import { AdminRequest } from "../libs/types/member";
 const productService = new ProductService();
 
 const productController: T = {}; 
-productController.getAllproducts = async (req: Request, res: Response) => {
+productController.getAllProducts = async (req: Request, res: Response) => {
     try {
         console.log("getAllproducts"); 
-        res.render("Products");
+        res.send("products");
       
     }catch(err) {
         console.log("Error, getAllproducts:", err);
@@ -28,7 +28,7 @@ productController.getAllproducts = async (req: Request, res: Response) => {
 productController.createNewProduct = async (req: Request, res: Response) => {
     try {
         console.log("createNewProduct");
-        res.render("Products");
+        res.send("DONE");
     }catch(err) {
         console.log("Error, createNewProduct:", err);
         if(err instanceof Errors) res.status(err.code).json(err);
@@ -42,7 +42,7 @@ productController.createNewProduct = async (req: Request, res: Response) => {
 productController.updateChosenProduct = async (req: Request, res: Response) => {
     try {
         console.log("updateChosenProduct");
-      
+        res.send("UPDATE");
     }catch(err) {
         console.log("Error, updateChosenProduct:", err);
         if(err instanceof Errors) res.status(err.code).json(err);

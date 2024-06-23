@@ -64,10 +64,7 @@ class MemberService {
 
      /** SSR */
         
-        public async processSignup(input: MemberInput): Promise<Member> {
-
-           
-            
+        public async processSignup(input: MemberInput): Promise<Member> {     
             const salt = await bcrypt.genSalt();
             input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
             try{
@@ -110,6 +107,6 @@ class MemberService {
 }
 
 
-export default MemberService;
+export default MemberService;  
 
             
