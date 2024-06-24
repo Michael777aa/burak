@@ -1,62 +1,58 @@
- import mongoose, {Schema} from 'mongoose';
-import { MemberStatus, MemberType } from '../libs/enums/member.enum';
+import mongoose, { Schema } from "mongoose";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 
- // Schema first & Code 
+// Schema first & Code
 
- const memberSchema = new Schema({
+const memberSchema = new Schema(
+  {
     memberType: {
-        type: String,
-        enum: MemberType,
-        default: MemberType.USER
-    }, 
+      type: String,
+      enum: MemberType,
+      default: MemberType.USER,
+    },
 
     memberStatus: {
-        type: String,
-        enum:MemberStatus,
-        default: MemberStatus.ACTIVE
+      type: String,
+      enum: MemberStatus,
+      default: MemberStatus.ACTIVE,
     },
 
     memberNick: {
-        type: String,
-        index: {unique: true, sparse:true},
-        required:true,
+      type: String,
+      index: { unique: true, sparse: true },
+      required: true,
     },
 
     memberPhone: {
-        type: String,
-        index: {unique: true, sparse:true},
-        required:true,
-
+      type: String,
+      index: { unique: true, sparse: true },
+      required: true,
     },
 
     memberPassword: {
-        type: String,
-        select: false,
-        required: true,
+      type: String,
+      select: false,
+      required: true,
     },
 
     memberAddress: {
-        type: String,
-
+      type: String,
     },
 
     memberDesc: {
-        type: String,
-
+      type: String,
     },
 
     memberImage: {
-        type: String,
-
+      type: String,
     },
 
     memberPoints: {
-        type: Number,
-        default: 0,
-
+      type: Number,
+      default: 0,
     },
- },
-  {timestamps: true}        // createdAt, updateAt
-  );
+  },
+  { timestamps: true } // createdAt, updateAt
+);
 
-export default mongoose.model("Member", memberSchema);
+export default mongoose.model("product", memberSchema);

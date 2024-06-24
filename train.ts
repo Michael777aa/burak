@@ -1,13 +1,26 @@
-// L-TASK: 
+const animal_list = [
+  "fox",
+  "ant",
+  "bird",
+  "Lion",
+  "wolf",
+  "deer",
+  "bear",
+  "frog",
+  "hen",
+  "mole",
+  "duck",
+  "goat",
+  "dog",
+  "cat",
+  "bat",
+  "cỒck",
+  "cow",
+];
 
-// Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
-// MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
-
-function reverseSentence(sentence: string): string {
-    const words = sentence.split(' ');
-    const reversedWords = words.map(word => word.split('').reverse().join(''));
-    const reversedSentence = reversedWords.join(' ');
-    return reversedSentence;
+function findAnimals(txt) {
+  let sameid;
 }
-const result = reverseSentence("we like coding!");
-console.log(result); 
+
+const javob = findAnimals("shjfdshg");
+console.log("Javob", javob);

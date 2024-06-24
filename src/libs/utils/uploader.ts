@@ -3,27 +3,25 @@ import multer from "multer";
 import { v4 } from "uuid";
 
 function getTargetImageStorage(address: any) {
-    return multer.diskStorage({
-        destination: function (req, file, cb) {
-        cb(null, `./uploads/${address}`);
-        },
-        filename: function(req, file, cb) {
-        console.log(file);
-        const extension = path.parse(file.originalname).ext;
-        const random_name = v4() + extension;
-        cb(null, random_name);     
-        },
-    });
+  return multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, `./uploads/${address}`);
+    },
+    filename: function (req, file, cb) {
+      console.log(file);
+      const extension = path.parse(file.originalname).ext;
+      const random_name = v4() + extension;
+      cb(null, random_name);
+    },
+  });
 }
 
 const makeUpLoader = (address: string) => {
-    const storage = getTargetImageStorage(address);
-    return multer({storage: storage});
+  const storage = getTargetImageStorage(address);
+  return multer({ storage: storage });
 };
 
 export default makeUpLoader;
-
-
 
 // const product_storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -33,10 +31,9 @@ export default makeUpLoader;
 //         console.log(file);
 //         const extension = path.parse(file.originalname).ext;
 //         const random_name = v4() + extension;
-//         cb(null, random_name);        
+//         cb(null, random_name);
 //     },
 
 // });
 
 // export const uploadProductImage = multer({storage: product_storage});
-
