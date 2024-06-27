@@ -65,6 +65,14 @@ const productSchema = new Schema(
     },
   },
   { timestamps: true } // createdAt, updateAt
+
+
 );
 
-export default mongoose.model("member", productSchema);
+
+productSchema.index(
+  { productName: 1, productSize: 1, productVolume: 1 },
+  { unique: true }
+);
+
+export default mongoose.model("product", productSchema);
