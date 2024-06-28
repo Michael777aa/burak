@@ -7,6 +7,7 @@ import { LoginInput } from "../libs/types/member";
 import { Session } from "express-session";
 import Errors, { HttpCode, Message } from "../libs/Error";
 
+
 const memberService = new MemberService();
 
 const restaurantController: T = {};
@@ -99,6 +100,30 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
     });
   } catch (err) {
     console.log("Error, processLogin:", err);
+    res.redirect("/admin");
+  }
+};
+
+
+restaurantController.getUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("getUsers");
+    const result = await memberService.getUsers();
+
+    res.render("users ", {users: result});
+  } catch (err) {
+    console.log("Error, getUsers:", err);
+    res.redirect("/admin/login");
+  }
+};
+
+restaurantController.updateChosenUser = (req: Request, res: Response) => {
+  try {
+    console.log("updateChosenUser");
+
+    res.render("updateChosenUser");
+  } catch (err) {
+    console.log("Error, updateChosenUser:", err);
     res.redirect("/admin");
   }
 };

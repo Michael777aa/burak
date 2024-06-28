@@ -27,7 +27,7 @@ class MemberService {
     }
   }
   public async login(input: LoginInput): Promise<Member> {
-    // TODO Consider member status later
+ 
     const member = await this.memberModel
       .findOne(
         { memberNick: input.memberNick },
@@ -40,7 +40,7 @@ class MemberService {
       input.memberPassword,
       member.memberPassword
     );
-    // const isMatch = input.memberPassword === member.meberPassword;
+    
 
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
@@ -75,7 +75,7 @@ class MemberService {
       input.memberPassword,
       member.memberPassword
     );
-    // const isMatch = input.memberPassword === member.meberPassword;
+    
 
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
@@ -83,6 +83,24 @@ class MemberService {
 
     return await this.memberModel.findById(member._id).exec();
   }
+
+  public async getUsers(): Promise<Member[]> {
+      const result = await this.memberModel
+      .find({memberType: MemberType.USER})
+      .exec();
+      if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+      return result;
+     
+  }
+
+  public async updateChosenUser(): Promise<Member[]> {
+    const result = await this.memberModel
+    .find({memberType: MemberType.USER})
+    .exec();
+    if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
+   
+}
 }
 
 export default MemberService;
