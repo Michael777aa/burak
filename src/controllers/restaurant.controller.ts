@@ -48,7 +48,7 @@ restaurantController.processSignup = async (
   try {
     console.log("processSignup");
     const file = req.file;
-    if (!file) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+    if (!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
     const newMember: MemberInput = req.body;
     newMember.memberImage = file?.path;
     newMember.memberType = MemberType.RESTAURANT;
