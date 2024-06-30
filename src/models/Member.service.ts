@@ -57,12 +57,13 @@ class MemberService {
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
     try {
       const result = await this.memberModel.create(input);
-      result.memberPassword = "";
+      result.memberPassword ="";
       return result;
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }
+  
   public async processLogin(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(
