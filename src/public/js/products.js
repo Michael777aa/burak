@@ -33,7 +33,6 @@ $(function () {
       console.log("response", response);
       const result = response.data;
       if (result.data) {
-        console.log("Product updated!");
         $(".new-product-status").blur();
       } else alert("Product update failed!");
     } catch (err) {
@@ -64,10 +63,9 @@ function validateForm() {
 }
 function previewFileHandler(input, order) {
   const imgClassName = input.className;
-  console.log("imgClassName:", imgClassName);
-  const file = $(`.${imgClassName}`).get(0).files[0];
-  const fileType = file["type"];
-  const validImageType = ["image/jpg", "image/jpeg", "image/png"];
+  const file = $(`.${imgClassName}`).get(0).files[0],
+    fileType = file["type"],
+    validImageType = ["image/jpg", "image/jpeg", "image/png"];
   if (!validImageType.includes(fileType)) {
     alert("Please, insert only jpeg, jpg and png!");
   } else {
