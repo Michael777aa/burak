@@ -35,7 +35,7 @@ productController.createNewProduct = async (
 
     const data: ProductInput = req.body;
     data.productImages = req.files?.map((ele) => {
-      return ele.path
+      return ele.path;
     });
 
     await productService.createNewProduct(data);
@@ -47,7 +47,7 @@ productController.createNewProduct = async (
     const message =
       err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
     res.send(
-      `<script>alert("${message}"); window.location.replace("admin/product/all")</script>`
+      `<script>alert("${message}"); window.location.replace("/admin/product/all")</script>`
     );
   }
 };
