@@ -36,7 +36,7 @@ const productSchema = new Schema(
       required: true,
     },
 
-    ptoductSize: {
+    productSize: {
       type: String,
       enum: ProductSize,
       default: ProductSize.NORMAL,
@@ -65,10 +65,7 @@ const productSchema = new Schema(
     },
   },
   { timestamps: true } // createdAt, updateAt
-
-
 );
-
 
 productSchema.index(
   { productName: 1, productSize: 1, productVolume: 1 },
