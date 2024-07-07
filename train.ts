@@ -1,9 +1,11 @@
-//Q-TASK:
+// R-TASK:
 
-// Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
-// MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
+// Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
+// MASALAN: calculate("1+3") return 4;
 
-function hasProperty(obj: object, prop: string): boolean {
-  return obj.hasOwnProperty(prop);
+function calculate(expression: string): number {
+  const numbers = expression.split("+").map(Number);
+  const result = numbers.reduce((sum, num) => sum + num, 0);
+  return result;
 }
-console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
+console.log(calculate("1+2"));
