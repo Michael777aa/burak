@@ -1,11 +1,15 @@
-// R-TASK:
+// S-TASK:
 
-// Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
-// MASALAN: calculate("1+3") return 4;
+// Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+// MASALAN: missingNumber([3, 0, 1]) return 2
 
-function calculate(expression: string): number {
-  const numbers = expression.split("+").map(Number);
-  const result = numbers.reduce((sum, num) => sum + num, 0);
-  return result;
+function missingNumber(nums: number[]): number {
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i) {
+      return i;
+    }
+  }
+  return nums.length;
 }
-console.log(calculate("1+2"));
+console.log(missingNumber([3, 0, 1]));
