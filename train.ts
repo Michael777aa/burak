@@ -1,37 +1,14 @@
-// T-TASK:
+// U-TASK:
 
-// Shunday function yozing, u sonlardan tashkil topgan 2 ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
-// MASALAN: mergeSortedArrays([0,3,4,31], [4,6,30]); return [0,3,4,4,6,30,31]
+// Shunday function yozing, uni number parametri bolsin va 0 dan berilgan parametrgacha bolgan oraliqdagi faqat toq sonlar nechtaligini return qilsin
+// MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
+function sumOdds(num: number): number {
+  let count = 0;
 
-function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
-  const mergedArray: number[] = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < arr1.length && j < arr2.length) {
-    if (arr1[i] < arr2[j]) {
-      mergedArray.push(arr1[i]);
-      i++;
-    } else {
-      mergedArray.push(arr2[j]);
-      j++;
-    }
+  for (let i = 1; i <= num; i += 2) {
+    count++;
   }
 
-  while (i < arr1.length) {
-    mergedArray.push(arr1[i]);
-    i++;
-  }
-
-  while (j < arr2.length) {
-    mergedArray.push(arr2[j]);
-    j++;
-  }
-
-  return mergedArray;
+  return count;
 }
-const array1 = [0, 3, 4, 31];
-const array2 = [4, 6, 30];
-const sortedArray = mergeSortedArrays(array1, array2);
-
-console.log(sortedArray);
+console.log(sumOdds(9));
