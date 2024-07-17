@@ -19,6 +19,7 @@ export enum Message {
   NO_MEMBER_NICK = "No member with that member nick!",
   WRONG_PASSWORD = "Wrong password, please try again!",
   NOT_AUTHENTICATED = "You are not authenticated, Please Login first!",
+  TOKEN_CREATION_FAILED = "Token creation error!",
 }
 class Errors extends Error {
   public code: HttpCode;
