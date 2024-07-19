@@ -1,18 +1,19 @@
-// V-TASK:
+// W-TASK:
 
-// Shunday function yozing, uni string parametri bolsin va stringdagi harf va u harf necha marta takrorlangani sonidan tashkil topgan object qaytarsin.
-// MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+// Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
+// MASALAN: chunkArray([1,2,3,4,5,6,7,8,9,10], 3) return [[1,2,3], [4,5,6], [7,8,9], [10]]
 
-function countChars(str: string): Record<string, number> {
-  const charCount: Record<string, number> = {};
-  const uniqueChars = new Set(str);
+function chunkArray<T>(array: T[], chunkSize: number): T[][] {
+  if (chunkSize <= 0) throw new Error("chunkSize must be greater than 0");
 
-  uniqueChars.forEach((char) => {
-    charCount[char] = str.split(char).length - 1;
-  });
-
-  return charCount;
+  return array.reduce((acc: T[][], _, index: number) => {
+    if (index % chunkSize === 0) {
+      acc.push(array.slice(index, index + chunkSize));
+    }
+    return acc;
+  }, []);
 }
-
-const result = countChars("hello");
-console.log(result);
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const chunkSize = 3;
+const chunkedArray = chunkArray(array, chunkSize);
+console.log(chunkedArray);
