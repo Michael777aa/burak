@@ -54,13 +54,14 @@ class ProductService {
     id: string
   ): Promise<Product> {
     const productId = shapeIntoMongooseObjectId(id);
-
+    console.log("passed here 1");
     let result = await this.productModel
       .findOne({
         _id: productId,
         productStatus: ProductStatus.PROCESS,
       })
       .exec();
+    console.log("passed here 2");
 
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
@@ -80,11 +81,11 @@ class ProductService {
       }
       //Increase Counts
 
-      const result2 = await this.productModel
+      result = await this.productModel
         .findByIdAndUpdate(
           productId,
           {
-            $inc: { productsViews: +1 },
+            $inc: { productViews: +1 },
           },
           { new: true }
         )
