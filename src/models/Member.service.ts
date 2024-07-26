@@ -41,6 +41,7 @@ class MemberService {
       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
   }
+
   public async login(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(
@@ -68,6 +69,7 @@ class MemberService {
     }
     return await this.memberModel.findById(member._id).lean().exec();
   }
+
   public async getMemberDetail(member: Member): Promise<Member> {
     const memberId = shapeIntoMongooseObjectId(member._id);
     const result = await this.memberModel
@@ -99,8 +101,33 @@ class MemberService {
       .limit(4)
       .exec();
 
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    if (!result || result.length === 0)
+      throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result;
+  }
+
+  public async addUserPoint(member: Member, point: number): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+
+    const updatedMember = await this.memberModel
+      .findOneAndUpdate(
+        {
+          _id: memberId,
+          memberType: MemberType.USER,
+          memberStatus: MemberStatus.ACTIVE,
+        },
+        {
+          $inc: { memberPoints: point },
+        },
+        { new: true }
+      )
+      .exec();
+
+    if (!updatedMember) {
+      throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+    }
+
+    return updatedMember;
   }
 
   /** SSR */
@@ -113,6 +140,7 @@ class MemberService {
       result.memberPassword = "";
       return result;
     } catch (err) {
+      console.error("Error during signup process:", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }
@@ -150,7 +178,7 @@ class MemberService {
     return result;
   }
 
-  public async updateChosenUser(input: MemberUpdateInput): Promise<Member[]> {
+  public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
     input._id = shapeIntoMongooseObjectId(input._id);
     const result = await this.memberModel
       .findOneAndUpdate({ _id: input._id }, input, { new: true })
